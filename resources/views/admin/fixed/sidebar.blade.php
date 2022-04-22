@@ -32,12 +32,14 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="{{route('admin.added.TourList')}}">view Tour plan</a></li>
+                 {{-- <li class="nav-item"><a class="nav-link" href="{{route(' user.tourplant')}}">view Tour plan</a></li> --}}
+
                 <li class="nav-item"><a class="nav-link" href="{{route('admin.view.joined.tourlist')}}">Joined Tour Plan List</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('Tourplan.Report')}}">Tour Plan Report</a></li>
               </ul>
             </div>
           </li>
-          
+
           <!--transport part-->
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
@@ -65,7 +67,7 @@
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('admin.create.location')}}">Add Location </a></li>
-              
+
                 <li class="nav-item"> <a class="nav-link" href="{{route('admin.location.list')}}">Location List</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route ('location.Report')}}">Location Report</a></li>
               </ul>
@@ -89,8 +91,8 @@
             </div>
            </li>
 
-           
-         
+
+
    <!--blog part-->
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#au" aria-expanded="false" aria-controls="au">
@@ -117,7 +119,7 @@
               <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('contact.show')}}">Add contact info</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route ('contact.list')}}">contact list</a></li>
-               
+
               </ul>
             </div>
           </li>
@@ -130,7 +132,7 @@
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-     
+
               <li class="nav-item"> <a class="nav-link" href="{{route('admin.review.list')}}">View Feedback</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('review.Report')}}">Feedback report</a></li>
               </ul>

@@ -16,10 +16,10 @@ a:hover i {
         width:inherit;
     }
 
-    
+
     </style>
 <div class="content-wrapper">
-    
+
     <div class="row">
         <div class="col-md-12 grid-margin">
             <div class="row">
@@ -28,26 +28,26 @@ a:hover i {
 
                     <!-- search button -->
                     <ul class="navbar-nav mr-lg-4">
-                        
+
                         <form action="{{route('admin.addtransportList')}}" method='get'>
-                       
-                        
+
+
               <li class="nav-item nav-search d-none d-lg-block">
                 <div class="input-group">
                   <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
                     <span class="input-group-text" id="search"style="display: contents;">
-                        
+
                     <button class="btn" type="submit"><i class="icon-search" ></i></button>
                     </span>
                   </div>
-                  
-                 
+
+
                   <input type="text" name="search" value="{{$key}}"class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
                 </div>
-         
+
               </li>
-    </form>  
-            </ul>           
+    </form>
+            </ul>
 </div>
 </div>
 @if($key)
@@ -58,7 +58,7 @@ a:hover i {
 
                     <table class="table">
                         <div class="row">
-                            
+
                             <div class="col-md-8 grid-margin">
                                 <table class="table text-center">
                                     <thead>
@@ -68,7 +68,7 @@ a:hover i {
                                             <th scope="col">Transport Type</th>
                                             <th scope="col">location</th>
                                             <th scope="col">Action</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -78,13 +78,13 @@ a:hover i {
                                         <td>{{$transport->transportName}}</td>
                                         <td>{{$transport->transportType}}</td>
                                         <td>{{$transport->location}}</td>
-                                        
+
                                            <td>
-                                        <a  href=""><i class="fa fa-eye fa-2x"style="color: #4b49ac;"></i></a>
-       <a href=""><span class="ml-2"><i class="fa fa-pencil-square fa-2x"style="color: #4b49ac;"></i></span></a>
-       <a href=""><span class="ml-2"><i class="fa fa-trash fa-2x"style="color:red;"></i></span></a>
+                                        <a  href="{{route('admin.transport.details',$transport->id)}}"><i class="fa fa-eye fa-2x"style="color: #4b49ac;"></i></a>
+       <a href="{{route('admin.transport.edit',$transport->id)}}"><span class="ml-2"><i class="fa fa-pencil-square fa-2x"style="color: #4b49ac;"></i></span></a>
+       <a href="{{ route('admin.addtransportdelete',$transport->id) }}"><span class="ml-2"><i class="fa fa-trash fa-2x"style="color:red;"></i></span></a>
                                         </td>
-                                        
+
                                       </tr>
                                       @endforeach
                                    </tbody>
