@@ -19,7 +19,7 @@ class TransportController extends Controller
 
         ]);
         return redirect()->back();
-      
+
     }
     public function TransportList(){
         $key=null;
@@ -53,4 +53,34 @@ class TransportController extends Controller
         return view('admin.layouts.transport.Report.transport_report',compact('Transports'));
 
     }
+
+    public function delete($id){
+        $transports=Transport::find($id)->delete();
+        return redirect()->back()->with('success','Transport deleted successfully');
+
+    }
+     public function EditTransport($id){
+        $transport=Transport::find($id);
+        return view('admin.layouts.transport.transport-edit',compact('transport'));
+    }
+    public function UpdateTransport(Request $request,$id){
+        // dd($request->all());
+         $transport=Transport::find($id);
+        $transport->update([
+            'transportName'=>$request->TransportName,
+            'transportType'=>$request->TransportType,
+            'location'=>$request->Location
+
+        ]);
+        return redirect()->route('admin.addtransportList')->with('success',' Transport Updated successfully.');
+    }
+
+     public function TransportDetails($id){
+        $transport=Transport::find($id);
+        return view('admin.layouts.transport.transportDetails',compact('transport'));
+
+    }
+
+
+
 }

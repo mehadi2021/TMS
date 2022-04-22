@@ -15,16 +15,16 @@ class BlogController extends Controller
     public function Addblog(){
         $user=User::all();
         $location=Location::all();
-        
+
         return view('admin.layouts.blog.AddBlog',compact('user','location'));
     }
     public function storeBlog(Request $request){
         $request->validate([
             'Date'=>'after_or_equal:today',
-            'Description'=>'required'|'string',
-            'BlogName'=>'required'|'string',
-          
-           
+            'Description'=>'required|string',
+            'BlogName'=>'required|string'
+
+
         ]);
         $BlogImagefile='';
         if($request->hasFile('BlogImage')){
@@ -66,10 +66,10 @@ class BlogController extends Controller
             $Blogs=Blog::with('user','locatin')
                         ->whereLike(['BlogName','location.Location_name','user.name'],$key)->get();
             return view('admin.layouts.blog.BlogList',compact('Blogs','key'));
-            
+
         }
-        
-    
+
+
         $Blogs=Blog::with('user','location')->get();
         return view('admin.layouts.blog.BlogList',compact('Blogs','key'));
 
@@ -118,7 +118,7 @@ $request->file('BlogImagefile')->storeAs('/uploads/Blogs',$blogimage);
         'SecondBlogimage'=>$secondblogimage,
         'ThirdBlogimage'=>$thirdblogimagefile,
         'Description'=>$request->Description,
-      
+
         'Description2'=>$request->Description2,
         'Description3'=>$request->Description3
 
@@ -127,7 +127,7 @@ $request->file('BlogImagefile')->storeAs('/uploads/Blogs',$blogimage);
     }
     public function approveBlog($blog_id){
         $Blog=Blog::find($blog_id);
-        
+
         if($Blog)
         {
             $Blog->update([
@@ -135,26 +135,26 @@ $request->file('BlogImagefile')->storeAs('/uploads/Blogs',$blogimage);
             ]);
             return redirect()->back()->with('success','Blog has been approved');
         }
-       
-        
+
+
         return redirect()->back();
-    
+
     }
     public function declineBlog($blog_id){
         $Blog=Blog::find($blog_id);
-        
+
         if($Blog)
         {
             $Blog->update([
                 'status'=>'decline'
-                
+
             ]);
-            
+
             // $TourPlans=AddTourPlan::find($tourplan_id)->delete();
             return redirect()->back()->with('error','Tour plan has been declined');
         }
         return redirect()->back();
-    
+
     }
 
     //report blog

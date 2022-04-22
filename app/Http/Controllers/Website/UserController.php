@@ -24,7 +24,7 @@ class UserController extends Controller
 
 if($request->hasFile('image'))
 {
-    
+
     // step 2: generate file name
     $user_image=date('Ymdhms') .'.'. $request->file('image')->getClientOriginalExtension();
 
@@ -32,7 +32,7 @@ if($request->hasFile('image'))
 
     $request->file('image')->storeAs('/uploads/users/',$user_image);
 
-}  
+}
         $user = User::create([
            'name'=>$request->user_name,
            'email'=>$request->user_email,
@@ -45,11 +45,11 @@ if($request->hasFile('image'))
            'bio'=>$request->bio,
            'mobile'=>$request->user_mobile
         ]);
-      //for email verification 
+      //for email verification
        VerifyUser::create([
         'token' => Str::random(60),
         'user_id' => $user->id
-        
+
        ]);
        Mail::to($user->email)->send(new VerifyEmail($user));
 
@@ -98,7 +98,7 @@ if($request->hasFile('image'))
     {
         $user=User::find($user_id);
         return view('website.pages.profile',compact('user'));
-       
+
     }
     public function logout()
     {
@@ -114,15 +114,15 @@ if($request->hasFile('image'))
     public function sendResetLink(Request $request){
       $token=\Str::random(64);
       \DB::table('password_resets')->insert([
-        'email' => $request->email, 
-        'token' => $token, 
+        'email' => $request->email,
+        'token' => $token,
         'created_at' => Carbon::now()
       ]);
       $action_link = route('reset.password.form',['token' =>$token,'email'=>$request->email]);
       $body = "We have received a request to reset the password for <b>Tour plan </b> account associated with ".$request->email.".you can reset your password by clicking on the link below";
 
       \Mail::send('website.reset.email-forgot',['action_link'=> $action_link,'body'=>$body],function($message)use($request){
-          $message->from('nusratety7@gmail.com','Tour plan');
+          $message->from('from@example.com','Tour plan');
           $message->to($request->email,'your name')
                   ->subject('Reset Password');
       });
@@ -155,7 +155,7 @@ if($request->hasFile('image'))
             ])->delete();
             return redirect()->route('user.page.login')->with('message','Your password has been changed! You can login with new password.');
         }
-    
+
     }
 
 
@@ -190,9 +190,9 @@ $user->update([
 return redirect()->route('profile',$user->id)->with('message','Your Profile Updated Successfully.');
 
 
-        
+
     }
 
-   
-    
+
+
 }
